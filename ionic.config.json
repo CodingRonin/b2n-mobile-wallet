@@ -1,0 +1,14 @@
+{
+  "name": "B2N-Wallet",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "proxies": [
+    {
+      "path": "/",
+      "proxyUrl": ""
+    }
+  ],
+  "id": ""
+}

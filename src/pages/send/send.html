@@ -1,0 +1,57 @@
+<ion-header>
+
+  <ion-navbar color="dark">
+    <ion-title>Send coins / {{this.sApplication.openedWallet.balanceUnlocked}} SUP</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only color="primary" (click)="scanCode()">
+          <ion-icon name="barcode"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+  
+</ion-header>
+
+
+<ion-content >
+  
+    <form (ngSubmit)="generateTransaction()" #sendForm="ngForm">
+        <ion-item color="dark">
+          <ion-label stacked >Receiver Address</ion-label>
+          <ion-input type="text" [(ngModel)]="this.receiverAddress" name="receiverAddress" required
+           placeholder="e.g 5SRBegqy1LUWGoWsf7LP5MbwcfmUY3P6cen2RgDqMcV47ComcSa71LGQhjB8FcskaC6ncdSJH3oqaLxwuQvpHhVn82zHVm3">
+          </ion-input>
+        </ion-item>
+        <ion-item color="dark">
+          <ion-label stacked>Amount</ion-label>
+          <ion-input type="text" placeholder='e.g 0.5' [(ngModel)]="this.amountToSend" name="amountToSend" required></ion-input>
+        </ion-item>
+        <ion-item color="dark">
+          <button ion-button type="button" clear item-end (click)="generatePaymentId()">Generate</button>
+          <button ion-button type="button" clear item-end (click)="scanCodePayment()"><ion-icon name="barcode"></ion-icon></button>
+          <ion-label stacked>Payment ID (optional)</ion-label>
+          <ion-input type="text" placeholder='e.g. f816938c9437ac9f' [(ngModel)]="this.paymentId" name="paymentId"></ion-input>
+        </ion-item>
+        <ion-item color="dark">
+          <ion-label>Privacy Level</ion-label>
+          <ion-select [(ngModel)]="this.sConfig.defaultMixin" name="defaultMixin">
+            <ion-option value="6">Low (ring size 7)</ion-option>
+            <ion-option value="10">Medium (ring size 11)</ion-option>
+            <ion-option value="20">High (ring size 21)</ion-option>
+            <ion-option value="45">Paranoid (ring size 46)</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item color="dark">
+            <ion-label>Priority Level</ion-label>
+            <ion-select [(ngModel)]="this.sConfig.defaultPriority" name="defaultPriority">
+              <ion-option value="1">Low (the cheapest)</ion-option>
+              <ion-option value="2">Medium (default)</ion-option>
+              <ion-option value="3">High (if you are in hurry)</ion-option>
+              <ion-option value="4">Paranoid (absolute priority)</ion-option>
+            </ion-select>
+          </ion-item>
+          <div text-center padding>
+              <button ion-button type="submit"  [disabled]="!sendForm.form.valid">Generate transaction</button>
+          </div>
+    
+    </form>
+</ion-content>

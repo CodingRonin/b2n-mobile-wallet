@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-navbar color="dark">
+    <ion-title>Transactions</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-list *ngIf="this.sApplication.openedWallet.transactions">
+        <button ion-item *ngFor="let t of this.sApplication.openedWallet.transactions" (click)="openModalTrx(t)" color="dark">
+            
+            <ion-thumbnail item-end text-right>
+                <img src="assets/imgs/arrow_in.png" item-start *ngIf="t.isReceived()" class="icon-trx"/>
+                <img src="assets/imgs/arrow_out.png" item-start *ngIf="!t.isReceived()" class="icon-trx"/>
+            </ion-thumbnail>
+            <h2>{{this.sApplication.formateTrx(t)}} </h2>
+            <h3>{{t.hash}}</h3>
+            <p>{{t.timestamp | date: 'dd/MM/yyyy H:mm' }}</p>
+          </button>
+    </ion-list>
+</ion-content>

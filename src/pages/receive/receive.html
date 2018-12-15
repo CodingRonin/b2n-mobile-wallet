@@ -1,0 +1,50 @@
+<ion-header>
+
+  <ion-navbar color="dark">
+    <ion-title>Receive coin</ion-title>
+    <ion-buttons end>
+            <button ion-button icon-only color="primary" (click)="openQrcodeModal('addressForReceive')">
+              <ion-icon name="add"></ion-icon>
+            </button>
+          </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+    <ion-card color="dark">
+        <ion-item color="dark">
+            <ion-avatar item-start clear ion-button (click)="openQrcodeModal('address')">
+                <img src="assets/imgs/qr-code-white.png"/> 
+            </ion-avatar>
+             <h2>Wallet address</h2>
+        </ion-item>      
+        <ion-card-content  text-center>
+          <p>
+            {{this.sApplication.openedWallet.address}}
+          </p>
+        </ion-card-content>
+        <ion-item color="dark">
+            <button ion-button clear item-start (click)="copyToClipboard('address')">Copy</button>
+            <button ion-button clear item-end (click)="share('address')">Share</button>
+          </ion-item>
+      </ion-card>
+      <ion-card color="dark">
+        <ion-item color="dark">
+            <ion-avatar item-start clear ion-button (click)="openQrcodeModal('integrated')">
+                <img src="assets/imgs/qr-code-white.png"/> 
+            </ion-avatar>
+          <h2>Integrated Address</h2>
+        </ion-item>
+        <ion-card-content text-center>
+            <p>
+              {{this.sApplication.openedWallet.integratedAddress}}
+            </p>
+          </ion-card-content>
+          <ion-item color="dark"> 
+              <button ion-button clear item-start (click)="copyToClipboard('integrated')">Copy</button>
+              <button ion-button clear item-end (click)="share('integrated')">Share</button>
+            </ion-item>  
+      </ion-card>
+</ion-content>

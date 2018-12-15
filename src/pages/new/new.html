@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-toolbar color="dark">
+      <ion-title>
+        Generate / Import a Wallet
+      </ion-title>
+      <ion-buttons start>
+        <button ion-button (click)="dismiss()">
+          <span ion-text showWhen="ios">Cancel</span>
+          <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+    <ion-card>
+        <ion-item>
+            <ion-label stacked>Wallet name</ion-label>
+            <ion-textarea [(ngModel)]="this.walletName" name="walletName" placeholder="Your wallet name" required></ion-textarea>
+          </ion-item>
+    <ion-item>
+        <button color="primary"  text-center ion-item (click)="createWallet()" [disabled]="!this.valid()">
+          Generate a new Wallet
+        </button>
+      </ion-item>
+      <ion-item text-center><p>OR</p></ion-item>
+    
+        <ion-item>
+            <ion-label stacked>Import from your Private Login Key</ion-label>
+            <ion-textarea [(ngModel)]="this.privateKey" name="privateKey" placeholder="Your Private Login Key"></ion-textarea>
+          </ion-item>
+          <ion-item>
+              <button color="dark"  text-center ion-item margin-top (click)="importWallet()">
+                Import wallet
+              </button>
+          </ion-item>
+      </ion-card>
+</ion-content>
